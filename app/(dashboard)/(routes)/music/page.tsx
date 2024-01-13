@@ -14,10 +14,12 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import Empty from '@/components/empty';
 import Loader from '@/components/loader';
+import { useProModal } from '@/hooks/use-pro-modal';
 
 import { formSchema } from './constants';
 
 const MusicPage = () => {
+  const proModal = useProModal();
   const router = useRouter()
   const [music, setMusic] = useState<string>() // 对话消息数组
 
@@ -39,9 +41,10 @@ const MusicPage = () => {
       setMusic(response.data.audio)
 
       form.reset()
-    } catch (err: any) {
-      // TODO: Open Pro Modal
-      console.log(err);
+    } catch (error: any) {
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh()
     }
