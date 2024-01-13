@@ -2,7 +2,7 @@ import { auth } from '@clerk/nextjs';
 import { NextResponse } from 'next/server';
 import { ChatCompletionRequestMessage, Configuration, OpenAIApi } from 'openai'
 
-import { increaseApiLimit, checkApiLimit } from '@/lib/api-limit';
+// import { increaseApiLimit, checkApiLimit } from '@/lib/api-limit';
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY
@@ -33,9 +33,12 @@ export async function POST(req: Request) {
       return new NextResponse('Messages are required', { status: 400 })
     }
 
-    const freeTrial = await checkApiLimit();
-
-    if (!freeTrial) {
+    // 超出免费次数限制
+    // const freeTrial = await checkApiLimit();
+    // if (!freeTrial) {
+    //   return new NextResponse('Free trial has expired', { status: 403 })
+    // }
+    if (JSON.parse(localStorage.getItem('count') || '0') >= 5) {
       return new NextResponse('Free trial has expired', { status: 403 })
     }
 
@@ -44,7 +47,9 @@ export async function POST(req: Request) {
       messages: [instructionMessage, ...messages]
     })
 
-    await increaseApiLimit();
+    // 使用次数加一
+    // await increaseApiLimit();
+    localStorage.setItem('count', JSON.parse(localStorage.getItem('count') || '0') + 1)
 
     return NextResponse.json(response.data.choices[0].message)
   } catch (err) {

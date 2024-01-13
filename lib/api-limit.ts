@@ -3,6 +3,7 @@ import { auth } from '@clerk/nextjs'
 import prismadb from '@/lib/prismadb'
 import { MAX_FREE_COUNTS } from '@/constants'
 
+// 增加接口调用次数
 export const increaseApiLimit = async () => {
   const { userId } = auth();
 
@@ -28,6 +29,7 @@ export const increaseApiLimit = async () => {
   }
 };
 
+// 检查接口剩余调用次数是否足够
 export const checkApiLimit = async () => {
   const { userId } = auth();
 
@@ -46,4 +48,25 @@ export const checkApiLimit = async () => {
   } else {
     return false;
   }
+}
+
+// 获取接口剩余调用次数
+export const getApiLimitCount = async () => {
+  const { userId } = auth();
+
+  if (!userId) {
+    return 0;
+  }
+
+  const userApiLimit = await prismadb.userApiLimit.findUnique({
+    where: {
+      userId
+    }
+  });
+
+  if (!userApiLimit) {
+    return 0;
+  }
+
+  return userApiLimit.count;
 }
