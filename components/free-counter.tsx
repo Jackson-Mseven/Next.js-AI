@@ -6,6 +6,7 @@ import { Zap } from 'lucide-react'
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
+import { useProModal } from "@/hooks/use-pro-modal";
 
 interface FreeCounterProps {
   apiLimitCount: number
@@ -14,6 +15,7 @@ interface FreeCounterProps {
 export const FreeCounter = (/* {
   apiLimitCount = 0
 }: FreeCounterProps */) => {
+  const proModal = useProModal();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
@@ -34,7 +36,7 @@ export const FreeCounter = (/* {
             </p>
             <Progress className="h-3" value={JSON.parse(localStorage.getItem('count') || '0') / 5 * 100} ></Progress>
           </div>
-          <Button className="w-full" variant="premium">
+          <Button onClick={proModal.onOpen} className="w-full" variant="premium">
             Upgrape
             <Zap className="w-4 h-4 ml-2 fill-white"></Zap>
           </Button>
