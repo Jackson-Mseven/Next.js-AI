@@ -9,7 +9,3 @@
 # 菜单页
 
 ![perNav](.\UI-Demo\perNav.png)
-
-# 升级 Modal
-
-![upgrade](.\UI-Demo\upgrade.png)
