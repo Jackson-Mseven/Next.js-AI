@@ -1,11 +1,15 @@
 # 首页
 
-![home](.\UI-Demo\home.png)
+![home](./UI-Demo/home.png)
 
 # 仪表盘
 
-![dashboard](.\UI-Demo\dashboard.png)
+![dashboard](./UI-Demo/dashboard.png)
 
 # 菜单页
 
-![perNav](.\UI-Demo\perNav.png)
+![perNav](./UI-Demo/perNav.png)
+
+# 升级 Modal
+
+![upgrade](./UI-Demo/upgrade.png)
