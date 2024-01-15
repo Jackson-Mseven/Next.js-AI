@@ -1,9 +1,15 @@
-```
-// .env
+# 首页
 
-NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in // 登录地址
-NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up // 注册地址
-NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard // 登陆后地址
-NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/dashboard // 注册后地址
-```
+![home](.\UI-Demo\home.png)
 
+# 仪表盘
+
+![dashboard](.\UI-Demo\dashboard.png)
+
+# 菜单页
+
+![perNav](.\UI-Demo\perNav.png)
+
+# 升级 Modal
+
+![upgrade](.\UI-Demo\upgrade.png)
